@@ -21,8 +21,7 @@ INSERT INTO trophies(cid,name,year) VALUES(26,'Premier league champion','01/02')
 INSERT INTO trophies(cid,name,year) VALUES(23,'Premier league champion','00/01'); 
 INSERT INTO trophies(cid,name,year) VALUES(23,'Premier league champion','99/00'); 
 INSERT INTO trophies(cid,name,year) VALUES(23,'Premier league champion','98/99'); 
-INSERT INTO trophies(cid,name,year) VALUES(26,'Premier league champion','97/98'); \
-
+INSERT INTO trophies(cid,name,year) VALUES(26,'Premier league champion','97/98'); 
 INSERT INTO trophies(cid,name,year) VALUES(23,'Premier league champion','96/97'); 
 INSERT INTO trophies(cid,name,year) VALUES(23,'Premier league champion','95/96'); 
 INSERT INTO trophies(cid,name,year) VALUES(23,'Premier league champion','93/94'); 
@@ -267,7 +266,6 @@ call clubs_trophies ( 74);
 call clubs_trophies ( 75);
 call clubs_trophies ( 76);
 call clubs_trophies ( 77);
-call clubs_trophies ( 78);
 
 
 call nations_trophies ( 1);

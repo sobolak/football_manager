@@ -120,7 +120,7 @@ CREATE VIEW view_trainer_info AS  SELECT t.tid AS id, t.name, t.surname, n.name 
 CREATE VIEW view_free_trainer_info AS  SELECT t.tid AS id, t.name, t.surname, n.name AS nation , t.age, t.max_va1ue AS value, t.max_salary AS salary, t.photo,t.tid FROM trainers t, nations n WHERE t.nid=n.nid AND t.cid IS NULL;
 
 CREATE VIEW view_club_info AS SELECT c.cid AS id, c.name AS club, c.number_trophies, c.foudation, c.avg_age, c.money,c.league, t.name, t.surname , c.photo,c.cid FROM clubs c LEFT JOIN  trainers t USING(cid);
-CREATE VIEW view_clubs_trophies_list AS SELECT q.qid AS id, q.name AS trophy , q.year , c.name AS club,c.cid FROM trophies q, clubs c WHERE q.cid=c.cid; 
+CREATE VIEW view_clubs_trophies_list AS SELECT q.qid AS id, q.name AS trophy , q.year , t.name, t.surname , c.name AS club,c.cid FROM trophies q, trainers t,clubs c WHERE q.cid=c.cid AND q.tid = t.tid; 
 CREATE VIEW view_nations_trophies_list AS SELECT q.qid AS id, q.name AS trophy, q.year , n.name AS nation , n.nid FROM  trophies q, nations n WHERE q.nid=n.nid;
 
 CREATE VIEW view_player_contracts_list AS SELECT m.mid AS id, p.name, p.surname , c.name AS club, m.va1ue, m.salary, c.cid FROM contracts m ,players p , clubs c WHERE m.cid = c.cid AND m.pid = p.pid; 
@@ -139,7 +139,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE  clubs_trophies (  chosen_cid INT )BEGIN
 
-	UPDATE clubs SET number_trophies = coalesce((SELECT COUNT(*) FROM trophies t WHERE t.cid = chosen_cid),0) WHERE cid = chosen_cid;
+	UPDATE clubs SET number_trophies = (SELECT COUNT(*) FROM trophies t WHERE t.cid = chosen_cid) WHERE cid = chosen_cid;
 
 END; //
 DELIMITER ;
@@ -147,7 +147,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE  nations_trophies (  chosen_nid INT )BEGIN
 
-	UPDATE nations SET number_trophies = coalesce((SELECT COUNT(*) FROM trophies t WHERE t.nid = chosen_nid),0) WHERE nid = chosen_nid;
+	UPDATE clubs SET number_trophies = (SELECT COUNT(*) FROM nations n WHERE n.nid = chosen_nid) WHERE nid = chosen_nid;
 
 END; //
 DELIMITER ;
