@@ -17,7 +17,7 @@
 
 **Player Informations**
 
-![player](/uploads/7ee2b404e0100e0a3339f85d2b56f1e9/player.jpg)
+![player](/player.jpg)
 
 **Player transfers**
 
